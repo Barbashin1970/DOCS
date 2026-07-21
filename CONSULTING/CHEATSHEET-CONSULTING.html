@@ -145,6 +145,19 @@
   .diagram--flow .mermaid svg { width: 100%; height: auto; }
   .diagram--quad .mermaid svg { width: 100%; max-width: 560px; height: auto; }
 
+  /* ── Ров / защита ── */
+  .moat { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .guard {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 17px; box-shadow: var(--shadow);
+    border-top: 3px solid var(--accent-deep);
+  }
+  .guard .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-deep); display: inline-flex; align-items: center; gap: 6px; }
+  .guard .tag::before { content: "◆"; }
+  .guard h3 { font-size: 15px; font-weight: 700; margin: 9px 0 5px; letter-spacing: -.01em; }
+  .guard p { font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+  .guard p b { color: var(--ink); font-weight: 600; }
+
   /* ── Клин ── */
   .wedge {
     border-left: 3px solid var(--accent);
@@ -165,6 +178,7 @@
   @media (max-width: 560px) {
     .journey { grid-template-columns: repeat(2, 1fr); }
     .grid2 { grid-template-columns: 1fr; }
+    .moat { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -311,6 +325,35 @@ quadrantChart
     Приёмка: [0.45, 0.55]
     Контроль 1С: [0.70, 0.35]
           </pre>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Почему это не скопировать -->
+    <section>
+      <div class="sec-head">
+        <span class="n">04</span>
+        <h2>Почему это не скопировать</h2>
+        <span class="note">не вайбкодится клиентом · не копируется как интерфейс</span>
+      </div>
+      <div class="moat">
+        <div class="guard">
+          <span class="tag">болит, но терпимо</span>
+          <h3>Клиент не сделает это сам</h3>
+          <p>Боль есть — но её <b>терпят</b>, и сам заказчик не сядет её кодить. «Гвоздь» из ноги бизнеса
+          вытаскивает и накладывает пластырь только консультант: приходит, ставит диагноз, <b>останавливает
+          утечку денег</b>. Это работа с болью, а не установка ещё одной программы — поэтому
+          «вайбкодингом за десять дней» такой результат не закрывается.</p>
+        </div>
+        <div class="guard">
+          <span class="tag">калибровка — локально</span>
+          <h3>Интерфейс повторят — параметры нет</h3>
+          <p>Ценность не в экране (его-то как раз скопируют), а в наборе <b>оптимальных параметров</b>
+          регламентов. Набор храним локально и делим с клиентом права на те калибровки, при которых
+          <b> Байес доволен результатом</b> — доказанный success-rate. UI собрать за дни можно;
+          проверенные границы, при которых контур реально ловит нарушение, — нельзя.</p>
         </div>
       </div>
     </section>
