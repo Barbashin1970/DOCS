@@ -1,0 +1,336 @@
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --panel: #ffffff;
+    --ink: #0e1726;
+    --ink-soft: #45536b;
+    --ink-faint: #6c7a92;
+    --line: #dce3ee;
+    --line-soft: #e7ecf4;
+    --accent: #2563eb;
+    --accent-deep: #1e40af;
+    --accent-wash: #eaf1fe;
+    --proof: #0e9f6e;
+    --proof-wash: #e7f6ef;
+    --diagram-bg: #fcfdff;   /* фиксированная «бумага» для схем в обеих темах */
+    --diagram-line: #e3e9f2;
+    --shadow: 0 1px 2px rgba(16,23,38,.06), 0 8px 24px rgba(16,23,38,.05);
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b1220;
+      --panel: #101a2c;
+      --ink: #e7edf5;
+      --ink-soft: #a9b6ca;
+      --ink-faint: #7f8ea6;
+      --line: #223049;
+      --line-soft: #1a2740;
+      --accent: #5b8cf5;
+      --accent-deep: #93b4fb;
+      --accent-wash: #16223c;
+      --proof: #35c58f;
+      --proof-wash: #12271f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fb; --panel: #ffffff; --ink: #0e1726; --ink-soft: #45536b; --ink-faint: #6c7a92;
+    --line: #dce3ee; --line-soft: #e7ecf4; --accent: #2563eb; --accent-deep: #1e40af;
+    --accent-wash: #eaf1fe; --proof: #0e9f6e; --proof-wash: #e7f6ef;
+    --shadow: 0 1px 2px rgba(16,23,38,.06), 0 8px 24px rgba(16,23,38,.05);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b1220; --panel: #101a2c; --ink: #e7edf5; --ink-soft: #a9b6ca; --ink-faint: #7f8ea6;
+    --line: #223049; --line-soft: #1a2740; --accent: #5b8cf5; --accent-deep: #93b4fb;
+    --accent-wash: #16223c; --proof: #35c58f; --proof-wash: #12271f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  .wrap {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: clamp(24px, 5vw, 56px) 20px 48px;
+  }
+  .page { max-width: 1000px; margin: 0 auto; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--accent); display: inline-block; }
+
+  h1 {
+    font-size: clamp(28px, 4.6vw, 46px);
+    line-height: 1.05;
+    letter-spacing: -.02em;
+    font-weight: 800;
+    text-wrap: balance;
+    margin: 16px 0 0;
+    max-width: 20ch;
+  }
+  h1 .soft { color: var(--accent-deep); display: block; }
+  .lede {
+    margin: 16px 0 0;
+    font-size: clamp(15px, 1.7vw, 18px);
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  .rule { height: 1px; background: var(--line); border: 0; margin: clamp(32px,5vw,48px) 0; }
+
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin: 0 0 18px; flex-wrap: wrap; }
+  .sec-head .n { font-family: var(--mono); font-size: 13px; color: var(--accent); letter-spacing: .05em; }
+  .sec-head h2 { font-size: clamp(18px,2.4vw,23px); font-weight: 700; letter-spacing: -.01em; margin: 0; }
+  .sec-head .note { font-size: 13px; color: var(--ink-faint); margin-left: auto; }
+
+  /* ── Путь консультанта: 6 шагов ── */
+  .journey { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  .step {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 13px 15px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .step.accent { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset, var(--shadow); }
+  .step .num {
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    color: var(--ink-faint);
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 999px; border: 1px solid var(--line);
+    margin-bottom: 10px;
+  }
+  .step.accent .num { color: #fff; background: var(--accent); border-color: var(--accent); }
+  .step h3 { font-size: 14px; font-weight: 700; margin: 0 0 3px; letter-spacing: -.01em; }
+  .step p { font-size: 12px; line-height: 1.4; color: var(--ink-faint); margin: 0; }
+  .step .phase { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-top: 9px; display: block; }
+
+  /* ── Сетка «что становится возможным» ── */
+  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cap {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 15px 16px; box-shadow: var(--shadow);
+  }
+  .cap .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--proof); display: inline-flex; align-items: center; gap: 6px; }
+  .cap .tag::before { content: "✓"; font-weight: 700; }
+  .cap h3 { font-size: 15px; font-weight: 700; margin: 8px 0 4px; letter-spacing: -.01em; }
+  .cap p { font-size: 13px; line-height: 1.45; color: var(--ink-soft); margin: 0; }
+
+  /* ── Схемы (mermaid) ── */
+  .diagrams { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .diagram {
+    background: var(--diagram-bg);
+    border: 1px solid var(--diagram-line);
+    border-radius: 12px;
+    padding: 16px 16px 12px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+  .diagram .cap-t { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #5b6a86; margin: 0 0 10px; }
+  .diagram .mermaid { display: flex; justify-content: center; }
+  .diagram--flow .mermaid svg { width: 100%; height: auto; }
+  .diagram--quad .mermaid svg { width: 100%; max-width: 560px; height: auto; }
+
+  /* ── Клин ── */
+  .wedge {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-wash);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 18px;
+  }
+  .wedge h3 { margin: 0 0 6px; font-size: 16px; font-weight: 700; letter-spacing: -.01em; }
+  .wedge p { margin: 0; font-size: 14px; color: var(--ink-soft); max-width: 68ch; }
+  .wedge b { color: var(--ink); font-weight: 600; }
+
+  footer { margin-top: clamp(32px,5vw,44px); padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer .mono { font-family: var(--mono); }
+
+  @media (max-width: 860px) {
+    .journey { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .journey { grid-template-columns: repeat(2, 1fr); }
+    .grid2 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="wrap">
+  <div class="page">
+
+    <header>
+      <span class="eyebrow">РАГРАФ · для консалтинга</span>
+      <h1>Консалтинг, который остаётся —<span class="soft">и который можно проверить.</span></h1>
+      <p class="lede">Приходим, находим <b>где утекают деньги</b>, переводим правило в наглядный исполнимый граф,
+      замыкаем постоянный контроль — и <b>доказываем эффект</b>, а не оставляем отчёт на полке. Каждый заход
+      оставляет переиспользуемый пак-регламентов: экспертиза становится проверяемым активом.</p>
+    </header>
+
+    <hr class="rule" />
+
+    <!-- Путь консультанта -->
+    <section>
+      <div class="sec-head">
+        <span class="n">01</span>
+        <h2>Путь консультанта</h2>
+        <span class="note">от домена заказчика до доказанного эффекта</span>
+      </div>
+      <div class="journey">
+        <div class="step">
+          <span class="num">1</span>
+          <h3>Домен</h3>
+          <p>Рабочее пространство клиента</p>
+          <span class="phase">Scoping</span>
+        </div>
+        <div class="step">
+          <span class="num">2</span>
+          <h3>Онтология</h3>
+          <p>Логика бизнеса триплетами</p>
+          <span class="phase">Discovery</span>
+        </div>
+        <div class="step">
+          <span class="num">3</span>
+          <h3>Приоритеты</h3>
+          <p>Где теряете деньги — вверху</p>
+          <span class="phase">Value</span>
+        </div>
+        <div class="step accent">
+          <span class="num">4</span>
+          <h3>Граф-заготовки</h3>
+          <p>Правило из текста → граф без кода</p>
+          <span class="phase">Design</span>
+        </div>
+        <div class="step">
+          <span class="num">5</span>
+          <h3>Контур</h3>
+          <p>Данные → вердикт → наряд</p>
+          <span class="phase">Build</span>
+        </div>
+        <div class="step">
+          <span class="num">6</span>
+          <h3>Доказательство</h3>
+          <p>Реестр + прогноз, эффект в деньгах</p>
+          <span class="phase">Assurance</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Что становится возможным -->
+    <section>
+      <div class="sec-head">
+        <span class="n">02</span>
+        <h2>Что становится возможным</h2>
+        <span class="note">задачи, под которые раньше не было инструмента доказательства</span>
+      </div>
+      <div class="grid2">
+        <div class="cap">
+          <span class="tag">deliverable</span>
+          <h3>Доказуемое соответствие</h3>
+          <p>Не «мы проверили», а формально доказанный вердикт с трассой «из чего вывод» — артефакт для аудитора.</p>
+        </div>
+        <div class="cap">
+          <span class="tag">до инцидента</span>
+          <h3>Аудит непротиворечивости</h3>
+          <p>Формальный поиск дыр и противоречий в своде норм клиента — до аварии, а не из неё.</p>
+        </div>
+        <div class="cap">
+          <span class="tag">K3</span>
+          <h3>Честность при неполных данных</h3>
+          <p>«Нет данных» ≠ «нарушение». Система не даёт ложный «уверенный ответ», когда сигнала нет.</p>
+        </div>
+        <div class="cap">
+          <span class="tag">retainer</span>
+          <h3>Отчёт → живой контур</h3>
+          <p>Рекомендация перестаёт лежать на полке — исполняется и ловит нарушение до штрафа.</p>
+        </div>
+        <div class="cap">
+          <span class="tag">в цифрах</span>
+          <h3>Решаемость</h3>
+          <p>Success-rate критерия с доверительным интервалом — эффект количественно, а не «в целом».</p>
+        </div>
+        <div class="cap">
+          <span class="tag">без кода</span>
+          <h3>Регламент → ПО</h3>
+          <p>Правило из текста собирается в исполнимый граф мышью за дни, а не разработкой за месяцы.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Схемы -->
+    <section>
+      <div class="sec-head">
+        <span class="n">03</span>
+        <h2>Как это работает</h2>
+        <span class="note">замкнутый контур · приоритизация</span>
+      </div>
+      <div class="diagrams">
+        <div class="diagram diagram--flow">
+          <p class="cap-t">Замкнутый контур исполнения</p>
+          <pre class="mermaid">
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#eaf1fe','primaryBorderColor':'#2563eb','primaryTextColor':'#0e1726','secondaryColor':'#e7f6ef','tertiaryColor':'#f2f5fa','lineColor':'#8496ae','fontFamily':'ui-monospace, Menlo, monospace','fontSize':'15px'}}}%%
+flowchart LR
+    DATA["Данные клиента · чтение"] --> EX["Исполнение · K3 · границы"]
+    EX --> V{"Вердикт"}
+    V -->|нарушение| ORD["Наряд до штрафа"]
+    V -->|норма / нет данных| LOG
+    ORD --> LOG["Реестр + PROV-O"]
+    LOG --> FC["Решаемость (success-rate)"]
+    FC -.->|доказанный эффект| DATA
+          </pre>
+        </div>
+        <div class="diagram diagram--quad">
+          <p class="cap-t">Приоритизация: ценность × стоимость</p>
+          <pre class="mermaid">
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'ui-monospace, Menlo, monospace','fontSize':'14px','primaryTextColor':'#0e1726'}}}%%
+quadrantChart
+    title " "
+    x-axis Низкая стоимость --> Высокая
+    y-axis Низкая ценность --> Высокая
+    quadrant-1 Под контроль
+    quadrant-2 Оцифровать первым
+    quadrant-3 Низкий приоритет
+    quadrant-4 Бэклог
+    Критпуть: [0.25, 0.85]
+    Приёмка: [0.45, 0.55]
+    Контроль 1С: [0.70, 0.35]
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <!-- Клин -->
+    <section>
+      <div class="wedge">
+        <h3>Клин: оцифровываем пробелы вашей автоматизации</h3>
+        <p>Мы <b>не заменяем</b> ваши системы и не конкурируем за «перевести ручное в ПО». Приходим к тем, кто
+        <b> уже</b> оцифрован, и закрываем остаточный слой — правила, которые ваша автоматизация исполняет, но не
+        <b> проверяет</b>. Поэтому существующие платформы для нас — не соперники, а каналы: они не делают верификацию, мы делаем.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>РАГРАФ — объяснимая, аудируемая система принятия решений.</span>
+      <span class="mono">шпаргалка для показа · v1</span>
+    </footer>
+
+  </div>
+</div>
