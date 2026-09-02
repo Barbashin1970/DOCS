@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Акт сдачи-приёмки · Платформа АРХИ</title>
+<style>
+  @page { size: A4 portrait; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font: 11pt/1.45 "PT Serif", Georgia, serif; color: #111; margin: 0;
+          padding: 24px; max-width: 190mm; margin-inline: auto; background: #f5f5f5; }
+  .sheet { background: #fff; padding: 18mm 16mm; box-shadow: 0 1px 6px rgba(0,0,0,.15); }
+  h1 { font-size: 15pt; text-align: center; margin: 0 0 4px; letter-spacing: .02em; }
+  h1 + .sub { text-align: center; font-size: 10pt; color: #444; margin-bottom: 18px; }
+  h2 { font-size: 12pt; margin: 20px 0 8px; border-bottom: 1px solid #999; padding-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  table.grid th, table.grid td { border: 1px solid #999; padding: 4px 6px; vertical-align: top; }
+  table.grid th { background: #eee; font-weight: 600; text-align: left; }
+  table.grid tr.fill td { height: 9mm; }
+  table.grid tr { break-inside: avoid; }
+  table.grid thead { display: table-header-group; }
+  table.kv td { padding: 3px 0; vertical-align: bottom; }
+  table.kv td:first-child { width: 46%; white-space: nowrap; padding-right: 8px; }
+  .c { text-align: center; }
+  .num { white-space: nowrap; }
+  .tz { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .blank { display: inline-block; border-bottom: 1px solid #333; height: 1.15em;
+            width: 100%; vertical-align: bottom; }
+  .note { font-size: 9pt; color: #555; margin-top: 6px; }
+  .sign { margin-top: 18px; }
+  .sign td { padding: 12px 0 2px; }
+  .verdict { border: 1px solid #333; padding: 10px 12px; margin-top: 10px; }
+  .verdict .choice { margin-top: 8px; font-size: 11pt; }
+  .box { display: inline-block; width: 12px; height: 12px; border: 1px solid #333;
+          margin-right: 6px; vertical-align: -1px; }
+  .verdict .opt { margin-right: 28px; white-space: nowrap; }
+  .toolbar { position: sticky; top: 0; text-align: center; margin-bottom: 16px; }
+  .toolbar button { font: 600 13px/1 system-ui, sans-serif; padding: 10px 18px;
+      border: 0; border-radius: 8px; background: #1d4ed8; color: #fff; cursor: pointer; }
+  .toolbar button:hover { background: #1e40af; }
+  .toolbar a { font: 13px/1 system-ui, sans-serif; color: #1d4ed8; margin-left: 14px; }
+  .toolbar .hint { font: 12px/1.5 system-ui, sans-serif; color: #444; margin-top: 8px; }
+  .toolbar .hint b { color: #111; }
+  .page-break { break-before: page; }
+  @media print {
+    body { background: #fff; padding: 0; max-width: none; }
+    .sheet { box-shadow: none; padding: 0; }
+    .no-print { display: none !important; }
+  }
+</style></head><body>
+
+<div class="toolbar no-print">
+  <button onclick="window.print()">Печать / сохранить в PDF (А4)</button>
+  <a href="protokol-ispytaniy.html">Протокол испытаний →</a>
+  <div class="hint">
+    В окне печати снимите галочку <b>«Колонтитулы»</b> (в Safari — «Печатать колонтитулы»,
+    в Chrome — «Верхние и нижние колонтитулы» в дополнительных настройках).<br>
+    Иначе браузер впечатает на каждый лист дату и путь к файлу — на подписываемом
+    документе это лишнее. Средствами страницы это не отключается.
+  </div>
+</div>
+
+<div class="sheet">
+<h1>АКТ СДАЧИ-ПРИЁМКИ</h1>
+<div class="sub">программного изделия «Платформа АРХИ», обозначение 11710-11710, версия 8.0</div>
+
+<table class="kv">
+  <tr><td>Номер акта</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Дата составления</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Место составления</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Основание — договор</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Основание — техническое задание</td><td>11710-11710-1, редакция 8.0</td></tr>
+</table>
+
+<h2>1. Стороны</h2>
+<table class="grid">
+  <tbody>
+    <tr class="fill"><td style="width:22%">Исполнитель</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+    <tr class="fill"><td>в лице</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+    <tr class="fill"><td>действующего на основании</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+    <tr class="fill"><td>Заказчик</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+    <tr class="fill"><td>в лице</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+    <tr class="fill"><td>действующего на основании</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  </tbody>
+</table>
+
+<h2>2. Предмет акта</h2>
+<p>Исполнитель передал, а Заказчик принял результат работ — программное изделие
+«Платформа АРХИ» (система управления строительными проектами и регламентами
+с использованием семантического искусственного интеллекта), обозначение
+11710-11710, версия 8.0, в объёме раздела 4 технического задания
+11710-11710-1 редакции 8.0.</p>
+<p class="note">Требования, отнесённые техническим заданием к развитию платформы
+(приложение А технического задания), предметом настоящего акта не являются
+и составляют предмет последующих работ (п. 8.3 технического задания).</p>
+
+<h2>3. Состав передаваемого</h2>
+<table class="grid">
+  <thead><tr><th style="width:6%">№</th><th>Наименование</th>
+  <th style="width:24%">Обозначение</th><th style="width:14%">Отметка о приёмке</th></tr></thead>
+  <tbody>
+    <tr class="fill"><td>1</td><td>Программное изделие: контейнерный образ либо архив исходных
+      текстов с файлами сборки и запуска, файл-образец настроек, начальный набор
+      регламентов и справочных данных</td><td>11710-11710</td><td></td></tr>
+    <tr class="fill"><td>2</td><td>Техническое задание, редакция 8.0</td><td>11710-11710-1</td><td></td></tr>
+    <tr class="fill"><td>3</td><td>Спецификация функциональности модулей платформы</td><td>11710-11710</td><td></td></tr>
+    <tr class="fill"><td>4</td><td>Описание применения</td><td>11710-11710-31</td><td></td></tr>
+    <tr class="fill"><td>5</td><td>Руководство системного программиста</td><td>11710-11710-32</td><td></td></tr>
+    <tr class="fill"><td>6</td><td>Руководство программиста</td><td>11710-11710-33</td><td></td></tr>
+    <tr class="fill"><td>7</td><td>Руководство оператора</td><td>11710-11710-34</td><td></td></tr>
+    <tr class="fill"><td>8</td><td>Программа и методика испытаний</td><td>11710-11710-51</td><td></td></tr>
+    <tr class="fill"><td>9</td><td>Методические рекомендации по внедрению и обучению персонала</td><td>11710-11710-90</td><td></td></tr>
+    <tr class="fill"><td>10</td><td>Протокол приёмочных испытаний</td><td><span class="blank" style="min-width:60%"></span></td><td></td></tr>
+  </tbody>
+</table>
+<div class="note">Реквизиты доступа (токены внешних систем, административный пароль)
+в комплект поставки не входят и передаются отдельно (п. 4.7 (2) технического задания).
+Целостность переданного комплекта подтверждается контрольной суммой
+(п. 4.6 (5) технического задания): <span class="blank" style="min-width:40%"></span></div>
+
+<h2>4. Сведения о проведённых испытаниях</h2>
+<table class="grid">
+  <tbody>
+    <tr><td style="width:46%">Протокол приёмочных испытаний от</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+    <tr><td>Объём автоматического прогона</td><td>быстрый набор — ядро раздела 4 ТЗ</td></tr>
+    <tr><td>Результат автоматического прогона</td><td>пройдено 224 из 224, клиентской части — 50/50, непройденных нет</td></tr>
+    <tr><td>Идентификатор сборки (<code>/api/build</code>)</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  </tbody>
+</table>
+<div class="note">Приведённые сведения соответствуют прогону от 02.09.2026. Порядок,
+методы и трассировка проверок к пунктам раздела 4 технического задания
+установлены программой и методикой испытаний 11710-11710-51.</div>
+
+<h2>5. Заключение сторон</h2>
+<div class="verdict">
+  Работы по договору выполнены, программное изделие соответствует требованиям
+  раздела 4 технического задания 11710-11710-1 редакции 8.0:
+  <div class="choice">
+    <span class="opt"><span class="box"></span>принято без замечаний</span>
+    <span class="opt"><span class="box"></span>принято с замечаниями</span>
+    <span class="opt"><span class="box"></span>не принято</span>
+  </div>
+  <div class="note" style="margin-top:6px">нужное отметить</div>
+</div>
+
+<h2>6. Замечания и сроки их устранения</h2>
+<table class="grid">
+  <thead><tr><th style="width:6%">№</th><th style="width:18%">Пункт ТЗ</th>
+  <th>Содержание замечания</th><th style="width:20%">Срок устранения</th></tr></thead>
+  <tbody>
+    <tr class="fill"><td></td><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+<div class="note">При отсутствии замечаний таблица не заполняется; стороны
+подтверждают это отметкой «принято без замечаний» в разделе 5.</div>
+
+<h2>7. Стоимость работ и расчёты</h2>
+<table class="kv">
+  <tr><td>Стоимость выполненных работ по договору</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>В том числе налог на добавленную стоимость</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Порядок и срок оплаты</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+</table>
+<div class="note">Раздел заполняется в соответствии с условиями договора,
+указанного в основании настоящего акта. При безвозмездной передаче
+результата работ раздел не заполняется.</div>
+
+<h2>8. Подписи сторон</h2>
+<table class="sign">
+  <tr><td style="width:46%"><b>ИСПОЛНИТЕЛЬ</b></td><td style="width:8%"></td><td><b>ЗАКАЗЧИК</b></td></tr>
+  <tr><td><span class="blank" style="min-width:100%"></span></td><td></td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td class="note">должность</td><td></td><td class="note">должность</td></tr>
+  <tr><td><span class="blank" style="min-width:100%"></span></td><td></td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td class="note">подпись, фамилия и инициалы</td><td></td><td class="note">подпись, фамилия и инициалы</td></tr>
+  <tr><td class="note" style="padding-top:18px">М. П.</td><td></td>
+      <td class="note" style="padding-top:18px">М. П.</td></tr>
+</table>
+</div>
+
+</body></html>

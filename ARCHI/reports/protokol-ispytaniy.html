@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Протокол приёмочных испытаний · Платформа АРХИ</title>
+<style>
+  @page { size: A4 portrait; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body { font: 11pt/1.45 "PT Serif", Georgia, serif; color: #111; margin: 0;
+          padding: 24px; max-width: 190mm; margin-inline: auto; background: #f5f5f5; }
+  .sheet { background: #fff; padding: 18mm 16mm; box-shadow: 0 1px 6px rgba(0,0,0,.15); }
+  h1 { font-size: 15pt; text-align: center; margin: 0 0 4px; letter-spacing: .02em; }
+  h1 + .sub { text-align: center; font-size: 10pt; color: #444; margin-bottom: 18px; }
+  h2 { font-size: 12pt; margin: 20px 0 8px; border-bottom: 1px solid #999; padding-bottom: 3px; }
+  table { width: 100%; border-collapse: collapse; font-size: 9.5pt; }
+  table.grid th, table.grid td { border: 1px solid #999; padding: 4px 6px; vertical-align: top; }
+  table.grid th { background: #eee; font-weight: 600; text-align: left; }
+  table.grid tr.fill td { height: 9mm; }
+  table.grid tr { break-inside: avoid; }
+  table.grid thead { display: table-header-group; }
+  table.kv td { padding: 3px 0; vertical-align: bottom; }
+  table.kv td:first-child { width: 46%; white-space: nowrap; padding-right: 8px; }
+  .c { text-align: center; }
+  .num { white-space: nowrap; }
+  .tz { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .blank { display: inline-block; border-bottom: 1px solid #333; height: 1.15em;
+            width: 100%; vertical-align: bottom; }
+  .note { font-size: 9pt; color: #555; margin-top: 6px; }
+  .sign { margin-top: 18px; }
+  .sign td { padding: 12px 0 2px; }
+  .verdict { border: 1px solid #333; padding: 10px 12px; margin-top: 10px; }
+  .verdict .choice { margin-top: 8px; font-size: 11pt; }
+  .box { display: inline-block; width: 12px; height: 12px; border: 1px solid #333;
+          margin-right: 6px; vertical-align: -1px; }
+  .verdict .opt { margin-right: 28px; white-space: nowrap; }
+  .toolbar { position: sticky; top: 0; text-align: center; margin-bottom: 16px; }
+  .toolbar button { font: 600 13px/1 system-ui, sans-serif; padding: 10px 18px;
+      border: 0; border-radius: 8px; background: #1d4ed8; color: #fff; cursor: pointer; }
+  .toolbar button:hover { background: #1e40af; }
+  .toolbar a { font: 13px/1 system-ui, sans-serif; color: #1d4ed8; margin-left: 14px; }
+  .toolbar .hint { font: 12px/1.5 system-ui, sans-serif; color: #444; margin-top: 8px; }
+  .toolbar .hint b { color: #111; }
+  .page-break { break-before: page; }
+  @media print {
+    body { background: #fff; padding: 0; max-width: none; }
+    .sheet { box-shadow: none; padding: 0; }
+    .no-print { display: none !important; }
+  }
+</style></head><body>
+
+
+<div class="toolbar no-print">
+  <button onclick="window.print()">Печать / сохранить в PDF (А4)</button>
+  <a href="akt-sdachi-priemki.html">Акт сдачи-приёмки →</a>
+  <div class="hint">
+    В окне печати снимите галочку <b>«Колонтитулы»</b> (в Safari — «Печатать колонтитулы»,
+    в Chrome — «Верхние и нижние колонтитулы» в дополнительных настройках).<br>
+    Иначе браузер впечатает на каждый лист дату и путь к файлу — на подписываемом
+    документе это лишнее. Средствами страницы это не отключается.
+  </div>
+</div>
+
+<div class="sheet">
+<h1>ПРОТОКОЛ ПРИЁМОЧНЫХ ИСПЫТАНИЙ</h1>
+<div class="sub">программного изделия «Платформа АРХИ», обозначение 11710-11710, версия 8.0</div>
+
+<table class="kv">
+  <tr><td>Основание — техническое задание</td><td>11710-11710-1, редакция 8.0</td></tr>
+  <tr><td>Основание — программа и методика испытаний</td><td>11710-11710-51 (ГОСТ 19.301-79)</td></tr>
+  <tr><td>Дата и место проведения испытаний</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Организация-приёмщик</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Испытываемый экземпляр</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td>Идентификатор сборки (<code>/api/build</code>)</td><td><span class="blank" style="min-width:100%"></span></td></tr>
+</table>
+
+<h2>1. Состав приёмочной комиссии</h2>
+<table class="grid">
+  <thead><tr><th style="width:34%">Фамилия, имя, отчество</th><th style="width:33%">Должность</th><th>Организация</th></tr></thead>
+  <tbody>
+    <tr class="fill"><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<h2>2. Результаты автоматических проверок</h2>
+<table class="grid">
+  <tbody>
+    <tr><td style="width:60%">Объём прогона</td><td>быстрый набор — ядро раздела 4 ТЗ</td></tr>
+    <tr><td>Дата и время прогона</td><td>02.09.2026 22:36</td></tr>
+    <tr><td>Собрано проверок серверной части</td><td>224</td></tr>
+    <tr><td>Пройдено</td><td>224</td></tr>
+    <tr><td>Не пройдено</td><td>0</td></tr>
+    <tr><td>Автоматические проверки клиентской части</td><td>50/50</td></tr>
+    <tr><td>Продолжительность прогона</td><td>6 мин 51 с</td></tr>
+  </tbody>
+</table>
+<div class="note">Подробные результаты по каждому набору проверок — приложение к настоящему
+протоколу. Соответствие наборов пунктам раздела 4 технического задания установлено
+приложением А программы и методики испытаний 11710-11710-51.</div>
+
+
+<h2>3. Результаты проверок, выполняемых наблюдением</h2>
+<div class="note">Проверки Б-01…Б-09 приложения Б программы и методики испытаний;
+заполняется по результатам наблюдения на развёрнутом экземпляре.</div>
+<table class="grid">
+  <thead><tr><th style="width:10%">Проверка</th><th style="width:16%">Пункт ТЗ</th>
+  <th style="width:32%">Что проверяется</th><th style="width:18%">Результат</th>
+  <th>Примечание</th></tr></thead>
+  <tbody>
+    <tr class="fill"><td>Б-01</td><td>4.1.4 (2)</td><td>настройка допусков через веб-интерфейс</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-02</td><td>4.1.4 (4), 4.1.9.4</td><td>диалоговый ассистент</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-03</td><td>4.8 (2)</td><td>объяснимость решения</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-04</td><td>4.8 (1)</td><td>язык интерфейса и документации</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-05</td><td>4.8 (6)</td><td>расширяемость без программирования</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-06</td><td>4.1.5 (4)</td><td>подсказки по использованию системы</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-07</td><td>4.3 (3)</td><td>квалификация обслуживающего персонала</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-08</td><td>4.1.9.4 (а)</td><td>исходящий канал в мессенджере</td><td></td><td></td></tr>
+    <tr class="fill"><td>Б-09</td><td>4.1.1 (1)</td><td>упреждающее предоставление информации</td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<h2>4. Выявленные замечания</h2>
+<table class="grid">
+  <thead><tr><th style="width:8%">№</th><th style="width:18%">Пункт ТЗ</th>
+  <th>Содержание замечания</th><th style="width:20%">Срок устранения</th></tr></thead>
+  <tbody>
+    <tr class="fill"><td></td><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td><td></td></tr>
+    <tr class="fill"><td></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<h2>5. Заключение</h2>
+<div class="verdict">
+  Программное изделие «Платформа АРХИ» версии 8.0 требованиям раздела 4
+  технического задания 11710-11710-1 редакции 8.0:
+  <div class="choice">
+    <span class="opt"><span class="box"></span>соответствует</span>
+    <span class="opt"><span class="box"></span>соответствует с замечаниями по разделу 4</span>
+    <span class="opt"><span class="box"></span>не соответствует</span>
+  </div>
+  <div class="note" style="margin-top:6px">нужное отметить</div>
+</div>
+<div class="note">Требования приложения А технического задания (развитие платформы)
+в объём настоящих испытаний не входили в соответствии с п. 8.3 технического задания.</div>
+
+<table class="sign">
+  <tr><td style="width:48%">Председатель комиссии</td><td style="width:4%"></td><td>Член комиссии</td></tr>
+  <tr><td><span class="blank" style="min-width:100%"></span></td><td></td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td class="note">подпись, фамилия и инициалы</td><td></td><td class="note">подпись, фамилия и инициалы</td></tr>
+  <tr><td>Член комиссии</td><td></td><td>Член комиссии</td></tr>
+  <tr><td><span class="blank" style="min-width:100%"></span></td><td></td><td><span class="blank" style="min-width:100%"></span></td></tr>
+  <tr><td class="note">подпись, фамилия и инициалы</td><td></td><td class="note">подпись, фамилия и инициалы</td></tr>
+</table>
+</div>
+
+<div class="sheet page-break" style="margin-top:24px">
+<h1>ПРИЛОЖЕНИЕ К ПРОТОКОЛУ</h1>
+<div class="sub">Таблица результатов автоматических проверок · прогон от 02.09.2026 22:36</div>
+
+<table class="grid">
+  <thead><tr>
+    <th style="width:5%">Итог</th><th style="width:20%">Пункт ТЗ</th>
+    <th>Что подтверждено</th><th style="width:11%">Проверок</th>
+  </tr></thead>
+  <tbody>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (5), 4.1.9.1</td><td>интерпретатор графа: пороги, формулы, развилки, пошаговый расчёт</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (5)</td><td>узлы сравнения и развилки — маршрутизация по зонам</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.8</td><td>вычислитель формул: разбор выражения, проверка, справочник функций</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.8</td><td>статический контроль правила — семь правил спецификации языка</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.8</td><td>анализ непротиворечивости и пробелов внутри регламента</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.8</td><td>свод противоречий между разными регламентами</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (6)</td><td>критерий решённости: описание условия, по которому регламент закрыт</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (6)</td><td>автоматическая проверка исхода: закрыта ли задача в срок</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.5</td><td>хранилище регламентов: запись, история правок, восстановление версии</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (1)</td><td>создание регламента из шаблона</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (4)</td><td>семантическая модель RDF/Turtle: запись и обратный разбор</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.1 (3), 4.1.6</td><td>детекторы риска: срок, критический путь, перерасход, устаревший график</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.1 (3)</td><td>сквозной ход: правка в системе проектов → срабатывание регламента</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.1 (3), 4.1.3 (6)</td><td>вероятностная оценка исполнимости регламента с доверительным интервалом</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.1 (8)</td><td>статистика прогонов и обнаружение ухудшения качества</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.7</td><td>программный интерфейс: обработчики запросов отвечают по схеме</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.9.7</td><td>обработчики запросов, не покрытые остальными наборами</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.2 (3), 4.1.4 (5)</td><td>извлечение параметров из текста документа и смысловой поиск</td><td class="c num">12/12</td></tr>
+<tr><td class="c">✓</td><td class="tz">4.1.4 (2), 4.1.9.8</td><td>клиентская часть: границы слайдеров калибровки, разбор языка правил, предметные области</td><td class="c num">50/50</td></tr>
+  </tbody>
+</table>
+
+<div class="note">Итог прогона: пройдено 274
+из 274
+— непройденных нет.
+Прогон воспроизводится командой <code>./start.command</code>, пункт меню
+«Приёмочные испытания».</div>
+</div>
+
+</body></html>
