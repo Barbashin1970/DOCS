@@ -220,7 +220,7 @@ scheduler (раз в 15 мин) / POST /api/live/pull
 6. **ENV в Railway** — `XXX_BASE_URL` (без слеша), `XXX_AUTH_TOKEN` (чистый),
    `XXX_TENANT_ID` (если нужен). Логин/пароль upstream в env не класть.
 
-**Чек-лист (TL;DR):** поля в config → клиент `from_env(settings)` → health-эндпоинт
+**Чек-лист (Коротко):** поля в config → клиент `from_env(settings)` → health-эндпоинт
 → мок с tolerant-auth → тесты на settings (не env) → 3 переменные в Railway →
 открыть `/health` → читать диагноз по таблице §5.
 

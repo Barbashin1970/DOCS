@@ -1,6 +1,6 @@
 # Стратегический отчёт по позиционированию РАГРАФ
 
-> *Документ собран из трёх параллельных исследований (аудит РАГРАФ vs задачный подход; конкурентный ландшафт; ценовая/IP-стратегия) на основе [TASK-APPROACH.pdf](TASK-APPROACH.pdf) — научного отчёта о задачном подходе в ИИ (С.С. Гончаров, Д.И. Свириденко, Е.Е. Витяев, Сибирская научная школа, ИМ СО РАН + НГУ). Цифры по пошлинам/тарифам конкурентов — индикативные; требуют верификации через первоисточники (см. раздел 9). Дата: 2026-05-23.*
+> *Документ собран из трёх параллельных исследований (аудит РАГРАФ vs задачный подход; конкурентный ландшафт; ценовая/IP-стратегия) на основе [TASK-APPROACH.pdf](../TASK-APPROACH.pdf) — научного отчёта о задачном подходе в ИИ (С.С. Гончаров, Д.И. Свириденко, Е.Е. Витяев, Сибирская научная школа, ИМ СО РАН + НГУ). Цифры по пошлинам/тарифам конкурентов — индикативные; требуют верификации через первоисточники (см. раздел 9). Дата: 2026-05-23.*
 
 ---
 
@@ -47,7 +47,7 @@
 |---|---|---|---|
 | Предметная область (онтология + факты) | ✅ Полная | DuckDB + Turtle/OWL/SHACL + 13 датасетов knowledge base (1374 триплета) | Сигнатура есть неявно через Pydantic типы; Σ-определимость в декларациях |
 | Запрос | ⚠️ Частичная | SensorReading в flow_executor, триггеры из ETL, SPARQL-помощник | Запросы к LLM/RAG неструктурированы; нет явного Q&A DSL |
-| **Критерий решенности** | ✅ Полная (Phase 1+2) | `AcceptanceCriterion` first-class на Regulation: 5 kind'ов (no_violation / specific_output / custom + sensor_returned_normal / task_closed_within_sla). Runtime-проверка в [applier.py](../backend/app/services/etl/applier.py) → запись в `regulation_metrics`. UI секция в RegulationEditor. | Только одиночный критерий на регламент (методология допускает list). |
+| **Критерий решенности** | ✅ Полная (Phase 1+2) | `AcceptanceCriterion` first-class на Regulation: 5 kind'ов (no_violation / specific_output / custom + sensor_returned_normal / task_closed_within_sla). Runtime-проверка в [applier.py](../../backend/app/services/etl/applier.py) → запись в `regulation_metrics`. UI секция в RegulationEditor. | Только одиночный критерий на регламент (методология допускает list). |
 | **Контекст** | ✅ Преимущественно полная | `ExpectedResult.description` (акцептор) + Recommendation + source_document + valid_from/to | `failure_actions` как первоклассное поле — не декларированы (живут в тексте recommendation). |
 
 ### 2.2. 6 стадий ТФС Анохина
@@ -66,12 +66,12 @@
 ### 2.3. Что было реализовано в Phase 1 + Phase 2 (2026-05-22…23)
 
 **Phase 1** (синхронная половина критерия):
-- `AcceptanceCriterion` + `ExpectedResult` Pydantic-схемы ([backend/app/schemas/domain.py](../backend/app/schemas/domain.py))
-- 4 новых колонки на `regulations` + таблица `regulation_metrics` ([backend/app/services/regulation_store.py](../backend/app/services/regulation_store.py))
+- `AcceptanceCriterion` + `ExpectedResult` Pydantic-схемы ([backend/app/schemas/domain.py](../../backend/app/schemas/domain.py))
+- 4 новых колонки на `regulations` + таблица `regulation_metrics` ([backend/app/services/regulation_store.py](../../backend/app/services/regulation_store.py))
 - Хук в `applier.apply_one()` — синхронные kind'ы (no_violation / specific_output / custom) проверяются прямо в момент прогона flow
-- `GET /api/regulations/{id}/metrics` + `GET /api/regulations/metrics-batch` ([backend/app/api/regulations.py](../backend/app/api/regulations.py))
+- `GET /api/regulations/{id}/metrics` + `GET /api/regulations/metrics-batch` ([backend/app/api/regulations.py](../../backend/app/api/regulations.py))
 - UI секция «Критерий решенности» в RegulationEditor + inline-метрики (total / triggered / success_rate / p50_latency)
-- Новая Часть XVIII «Задачный подход» в [GLOSSARY.md](GLOSSARY.md) (+128 строк теории «на пальцах»)
+- Новая Часть XVIII «Задачный подход» в [GLOSSARY.md](../GLOSSARY.md) (+128 строк теории «на пальцах»)
 
 **Phase 1.5** (бадж в каталоге):
 - Batch-эндпоинт `metrics-batch` (один запрос на каталог вместо N) + `AcceptanceBadge` в RegulationList с цветовой кодировкой emerald/amber/rose/stone
@@ -79,11 +79,11 @@
 **Phase 2** (гибридная половина + visual analytics):
 - 2 гибридных kind'а: `sensor_returned_normal` (cyber-physical loop validation) + `task_closed_within_sla` (LEYKA-замыкание)
 - 5 новых колонок (sla_seconds / sensor_subtype / sensor_field / normal_threshold / followup_seconds) на `regulations`
-- [acceptance_resolver.py](../backend/app/services/etl/acceptance_resolver.py) — на каждом ETL-тике сканирует pending'и, резолвит через `live_data_store.latest_snapshot()` или агрегат LEYKA. TTL 24ч → timeout
+- [acceptance_resolver.py](../../backend/app/services/etl/acceptance_resolver.py) — на каждом ETL-тике сканирует pending'и, резолвит через `live_data_store.latest_snapshot()` или агрегат LEYKA. TTL 24ч → timeout
 - Подключён в `scheduler.tick()` после pull/apply фазы
 - UI: `<optgroup>` в селекте критерия (Синхронные / Гибридные), доп. поля для гибридных, спарклайн success_rate за 30 дней inline-SVG
 - `GET /api/regulations/{id}/metrics/history?days=30`
-- Миграция `apply_default_acceptance_criteria_v1` ([backend/app/services/default_criteria.py](../backend/app/services/default_criteria.py)) — 20 доменов → дефолтный критерий, проставляется одноразово на старте. 25 существующих регламентов уже промаркированы
+- Миграция `apply_default_acceptance_criteria_v1` ([backend/app/services/default_criteria.py](../../backend/app/services/default_criteria.py)) — 20 доменов → дефолтный критерий, проставляется одноразово на старте. 25 существующих регламентов уже промаркированы
 
 **Найденные и поправленные баги по ходу:**
 - Cross-connection DuckDB JOIN в `etl_control_store.list_sources()` (фикс «7 ч назад» в пульте ETL)
@@ -266,7 +266,7 @@
 - Vityaev E.E., Goncharov S.S., Sviridenko D.I. *Task-driven approach to artificial intelligence.* Cognitive Systems Research. 2023. V.81. P.50-56.
 - Goncharov S.S., Sviridenko D.I. *Σ-Programming.* Amer. Math. Soc. Transl. (2) Vol. 142, 1989.
 - Gumirov V.S., Matyukov P.Y., Palchunov D.E. *Semantic Domain-specific Languages.* SIBIRCON 2019, P.0955-0960.
-- Внутренняя документация РАГРАФ: [GLOSSARY.md](GLOSSARY.md) (терминология умного города + новые разделы про задачный подход, семантический ИИ, DSL).
+- Внутренняя документация РАГРАФ: [GLOSSARY.md](../GLOSSARY.md) (терминология умного города + новые разделы про задачный подход, семантический ИИ, DSL).
 
 ### 9.2. Требует верификации через первоисточники
 
